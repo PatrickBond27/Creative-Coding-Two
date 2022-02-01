@@ -10,10 +10,11 @@ function clap() {
 }
 
 clap(3, 8);
-
+// This is a function that loops
 function clap(startNum, endNum) {
+    // The variable that is assigning the other variables like an equation is called an expression
     let countDown = endNum - startNum;
-    for(let i = startNum, countDown<0, i++) {
+    for(let i = startNum; countDown<0; i++) {
         console.log("hi");
     }
 }
