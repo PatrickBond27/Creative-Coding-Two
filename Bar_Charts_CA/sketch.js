@@ -47,49 +47,43 @@ let chart05;
 let chart06;
 
 function setup() {
-    createCanvas(1500, 800);
+    createCanvas(1500, 2500);
+    generateData();
 
-    chart01 = new BarChart(data01);
-    chart01.chartWidth = 200;
-    chart01.chartHeight = 200;
-    chart01.posX = 100;
-    chart01.posY = 350;
+    chart01 = new BarChart(dataAvgScore);
+    chart01.chartWidth = 300;
+    chart01.chartHeight = 300;
+    chart01.posX = 150;
+    chart01.posY = 500;
     chart01.updateValues();
 
-    chart02 = new HorizontalBarChart(data02);
-    chart02.chartWidth = 200;
-    chart02.chartHeight = 200;
-    chart02.posX = 500;
-    chart02.posY = 350;
+    chart02 = new HorizontalBarChart(dataHighGross);
+    chart02.chartWidth = 400;
+    chart02.chartHeight = 700;
+    chart02.posX = 900;
+    chart02.posY = 900;
     chart02.updateValues();
 
     chart03 = new StackedBarChart(data03);
-    chart03.chartWidth = 200;
-    chart03.chartHeight = 200;
-    chart03.posX = 100;
-    chart03.posY = 700;
+    chart03.chartWidth = 300;
+    chart03.chartHeight = 300;
+    chart03.posX = 150;
+    chart03.posY = 1100;
     chart03.updateValues();
 
     chart04 = new LineChart(data04);
-    chart04.chartWidth = 200;
-    chart04.chartHeight = 200;
-    chart04.posX = 500;
-    chart04.posY = 700;
+    chart04.chartWidth = 300;
+    chart04.chartHeight = 300;
+    chart04.posX = 900;
+    chart04.posY = 1400;
     chart04.updateValues();
 
-    chart05 = new ScatteredPlotChart(data05);
-    chart05.chartWidth = 200;
-    chart05.chartHeight = 200;
-    chart05.posX = 900;
-    chart05.posY = 350;
+    chart05 = new ScatteredPlotChart(dataBudgetGross);
+    chart05.chartWidth = 900;
+    chart05.chartHeight = 700;
+    chart05.posX = 150;
+    chart05.posY = 2300;
     chart05.updateValues();
-
-    chart06 = new FullStackedBarChart(data06);
-    chart06.chartWidth = 200;
-    chart06.chartHeight = 200;
-    chart06.posX = 900;
-    chart06.posY = 700;
-    chart06.updateValues();
 }
 
 
@@ -100,5 +94,4 @@ function draw() {
     chart03.render();
     chart04.render();
     chart05.render();
-    chart06.render();
 }

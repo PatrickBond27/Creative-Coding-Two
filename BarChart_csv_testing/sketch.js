@@ -10,6 +10,7 @@ let chart02;
 
 function setup() {
     createCanvas(800,800);
+    generateData();
 
     // for(let i=0; i<data.length; i++){
     //     let tempVal = map(data[i].total, 0, maxValue, 0, chartHeight);

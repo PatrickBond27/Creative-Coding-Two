@@ -47,6 +47,7 @@ class LineChart {
         push();
         translate(this.posX, this.posY);
 
+        this.drawTitles();
         this.drawVerticalTicks();
         this.drawHorizontalValues();
         this.drawHorizontalLines();
@@ -58,6 +59,20 @@ class LineChart {
 
     scaleData(num) {
         return map(num, 0, this.maxValue, 0, this.chartHeight);
+    }
+
+    drawTitles() {
+        push();
+        fill(255);
+        textAlign(CENTER);
+        textSize(20);
+        text("Chart title", this.chartWidth / 2, -this.chartHeight - 40);
+        textSize(15);
+        text("Chart title Horizontal", this.chartWidth / 2, this.chartHeight / 3);
+        textSize(15);
+        rotate(-PI/2);
+        text("Chart title Vertical", this.chartHeight / 2, -this.chartWidth / 5);
+        pop();
     }
 
     drawAxis() {

@@ -1,0 +1,32 @@
+budget,company,country,director,genre,gross,name,rating,runtime,score,votes,year
+15000000,Paramount Pictures,USA,Tony Scott,Action,179.8,Top Gun,PG,110,6.9,236909,1986
+11000000,Interscope Communications,USA,Leonard Nimoy,Comedy,167.78,3 Men and a Baby,PG,102,5.9,39544,1987
+25000000,United Artists,USA,Barry Levinson,Drama,172.82,Rain Man,R,133,8,408473,1988
+35000000,Warner Bros.,USA,Tim Burton,Action,251.18,Batman,PG-13,126,7.6,288860,1989
+18000000,Hughes Entertainment,USA,Chris Columbus,Comedy,285.76,Home Alone,PG,103,7.5,350395,1990
+25000000,Walt Disney Pictures,USA,Gary Trousdale,Animation,218.96,Beauty and the Beast,G,84,8,344844,1991
+28000000,Walt Disney Pictures,USA,Ron Clements,Animation,217.35,Aladdin,G,90,8,287068,1992
+63000000,Universal Pictures,USA,Steven Spielberg,Adventure,402.45,Jurassic Park,PG-13,127,8.1,685270,1993
+55000000,Paramount Pictures,USA,Robert Zemeckis,Comedy,330.25,Forrest Gump,PG-13,142,8.8,1402876,1994
+30000000,Pixar Animation Studios,USA,John Lasseter,Animation,191.79,Toy Story,G,81,8.3,694113,1995
+75000000,Twentieth Century Fox Film Corporation,USA,Roland Emmerich,Action,306.16,Independence Day,PG-13,145,7,461225,1996
+200000000,Twentieth Century Fox Film Corporation,USA,James Cameron,Drama,658.67,Titanic,PG-13,194,7.8,862554,1997
+70000000,DreamWorks,USA,Steven Spielberg,Drama,216.54,Saving Private Ryan,R,169,8.6,979007,1998
+115000000,Lucasfilm,USA,George Lucas,Action,474.54,Star Wars: Episode I - The Phantom Menace,PG,136,6.5,584809,1999
+123000000,Universal Pictures,USA,Ron Howard,Comedy,260.04,How the Grinch Stole Christmas,PG,104,6,155553,2000
+125000000,Warner Bros.,UK,Chris Columbus,Adventure,317.57,Harry Potter and the Sorcerer's Stone,PG,152,7.5,499582,2001
+139000000,Columbia Pictures Corporation,USA,Sam Raimi,Action,403.7,Spider-Man,PG-13,121,7.3,587005,2002
+94000000,Pixar Animation Studios,USA,Andrew Stanton,Animation,380.84,Finding Nemo,G,100,8.1,772029,2003
+150000000,DreamWorks,USA,Andrew Adamson,Animation,436.47,Shrek 2,PG,93,7.2,342666,2004
+113000000,Lucasfilm,USA,George Lucas,Action,380.26,Star Wars: Episode III - Revenge of the Sith,PG-13,140,7.6,570398,2005
+225000000,Walt Disney Pictures,USA,Gore Verbinski,Action,423.31,Pirates of the Caribbean: Dead Man's Chest,PG-13,151,7.3,567704,2006
+258000000,Columbia Pictures,USA,Sam Raimi,Action,336.53,Spider-Man 3,PG-13,139,6.2,416842,2007
+185000000,Warner Bros.,USA,Christopher Nolan,Action,534.85,The Dark Knight,PG-13,152,9,1839571,2008
+237000000,Twentieth Century Fox Film Corporation,UK,James Cameron,Action,760.5,Avatar,PG-13,162,7.8,954412,2009
+200000000,Walt Disney Pictures,USA,Lee Unkrich,Animation,415,Toy Story 3,G,103,8.3,603472,2010
+125000000,Warner Bros.,USA,David Yates,Adventure,381.01,Harry Potter and the Deathly Hallows: Part 2,PG-13,130,8.1,608969,2011
+220000000,Marvel Studios,USA,Joss Whedon,Action,623.35,The Avengers,PG-13,143,8.1,1064633,2012
+130000000,Color Force,USA,Francis Lawrence,Action,424.66,The Hunger Games: Catching Fire,PG-13,146,7.6,535963,2013
+58800000,Warner Bros.,USA,Clint Eastwood,Action,350.12,American Sniper,R,133,7.3,362949,2014
+245000000,Lucasfilm,USA,J.J. Abrams,Action,936.66,Star Wars: The Force Awakens,PG-13,136,8.1,687192,2015
+200000000,Lucasfilm,USA,Gareth Edwards,Action,532.17,Rogue One,PG-13,133,7.9,365473,2016

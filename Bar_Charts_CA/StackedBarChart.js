@@ -43,6 +43,8 @@ class StackedBarChart {
         push();
         translate(this.posX, this.posY);
 
+        this.drawTitles();
+        this.drawLegend();
         this.drawTicks();
         this.drawHorizontalLines();
         this.drawRects();
@@ -52,6 +54,33 @@ class StackedBarChart {
 
     scaleData(num) {
         return map(num, 0, this.maxValue, 0, this.chartHeight);
+    }
+
+    drawTitles() {
+        push();
+        fill(255);
+        textAlign(CENTER);
+        textSize(20);
+        text("Chart title", this.chartWidth / 2, -this.chartHeight - 40);
+        textSize(15);
+        text("Chart title Horizontal", this.chartWidth / 2, this.chartHeight / 3);
+        textSize(15);
+        rotate(-PI/2);
+        text("Chart title Vertical", this.chartHeight / 2, -this.chartWidth / 5);
+        pop();
+    }
+
+    drawLegend() {
+        // Legend Title
+        for (let i = 0; i < this.data.length; i++) {
+            let colorNumber = i % 6;
+            fill(255);
+            textSize(15);
+            text(this.data[i].name, this.chartWidth + 60, -(this.chartHeight - 30) + 30 * i);
+            noStroke();
+            fill(this.colors[colorNumber]);
+            rect(this.chartWidth + 40, -(this.chartHeight - 30) + 30 * i, -15, -15);
+        }
     }
 
     drawAxis() {

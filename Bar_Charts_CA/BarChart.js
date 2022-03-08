@@ -33,25 +33,40 @@ class BarChart {
     }
 
     calculateMaxValue() {
-        let listValues = this.data.map(function(x) { return x.total })
+        let listValues = this.data.map(function(x) { return x.avgScore })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
     }
 
     render() {
 
-        push()
+        push();
         translate(this.posX, this.posY);
 
+        this.drawTitles();
         this.drawTicks();
         this.drawHorizontalLines();
         this.drawRects();
         this.drawAxis();
-        pop()
+        pop();
     }
 
     scaleData(num) {
         return map(num, 0, this.maxValue, 0, this.chartHeight);
+    }
+
+    drawTitles() {
+        push();
+        fill(255);
+        textAlign(CENTER);
+        textSize(20);
+        text("Chart title", this.chartWidth / 2, -this.chartHeight - 40);
+        textSize(15);
+        text("Chart title Horizontal", this.chartWidth / 2, this.chartHeight / 3);
+        textSize(15);
+        rotate(-PI/2);
+        text("Chart title Vertical", this.chartHeight / 2, -this.chartWidth / 5);
+        pop();
     }
 
     drawAxis() {
@@ -99,14 +114,14 @@ class BarChart {
             //bars
             fill(this.colors[colorNumber]);
             noStroke();
-            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].total));
+            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].avgScore));
 
             //numbers (text)
             noStroke();
             fill(255);
             textSize(16);
             textAlign(CENTER, BOTTOM);
-            text(this.data[i].total, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total));
+            text(this.data[i].avgScore, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].avgScore));
 
             //text
             if (this.showLabels) {
@@ -117,14 +132,14 @@ class BarChart {
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
                     rotate(PI / 2)
-                    text(this.data[i].name, 0, 0);
+                    text(this.data[i].year, 0, 0);
                     pop()
                 } else {
                     noStroke();
                     fill(255);
                     textSize(14);
                     textAlign(CENTER, BOTTOM);
-                    text(this.data[i].name, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
+                    text(this.data[i].year, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
                 }
             }
         }

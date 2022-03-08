@@ -6,15 +6,17 @@ class ScatteredPlotChart {
         this.chartHeight = 300;
         this.spacing = 5;
         this.margin = 30;
-        this.numTicks = 10;
+        this.xNumTicks = 7;
+        this.yNumTicks = 10;
         this.posX = 50;
         this.posY = 400;
-        this.dotRadius = 15;
+        this.dotRadius = 8;
         this.verticalTickIncrements;
         this.horizontalTickIncrements;
         this.maxValue;
         this.numPlaces = 0;
-        this.tickSpacing;
+        this.xTickSpacing;
+        this.yTickSpacing;
         this.barWidth;
         this.availableWidth;
 
@@ -30,16 +32,19 @@ class ScatteredPlotChart {
     }
 
     updateValues() {
-        this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
+        this.xTickSpacing = this.chartWidth / this.xNumTicks;
+        this.yTickSpacing = this.chartHeight / this.yNumTicks;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length));
         this.barWidth = this.availableWidth / this.data.length;
     }
 
     calculateMaxValue() {
-        let listValues = this.data.map(function(x) { return x.total })
-        this.maxValue = max(listValues);
-        this.verticalTickIncrements = this.maxValue / this.numTicks;
-        this.horizontalTickIncrements = this.maxValue / this.numTicks;
+        let listValuesY = this.data.map(function(x) { return x.gross })
+        this.maxValueY = max(listValuesY);
+        this.verticalTickIncrements = this.maxValueY / this.yNumTicks;
+        let listValuesX = this.data.map(function(x) { return x.budget })
+        this.maxValueX = max(listValuesX);
+        this.horizontalTickIncrements = this.maxValueX / this.xNumTicks;
     }
 
     render() {
@@ -47,6 +52,7 @@ class ScatteredPlotChart {
         push();
         translate(this.posX, this.posY);
 
+        this.drawTitles();
         this.drawVerticalTicks();
         this.drawHorizontalTicks();
         this.drawHorizontalLines();
@@ -55,8 +61,39 @@ class ScatteredPlotChart {
         pop();
     }
 
-    scaleData(num) {
-        return map(num, 0, this.maxValue, 0, this.chartHeight);
+    scaleDataY(num) {
+        return map(num, 0, this.maxValueY, 0, this.chartHeight);
+    }
+
+    scaleDataX(num) {
+        return map(num, 0, this.maxValueX, 0, this.chartWidth);
+    }
+
+    drawTitles() {
+        push();
+        fill(255);
+        textAlign(CENTER);
+        textSize(20);
+        text("The Budget and the Gross of the Movies in the year 2000", this.chartWidth / 2, -this.chartHeight - 40);
+        textSize(15);
+        text("Budget (in dollars)", this.chartWidth / 2, this.chartHeight / 8);
+        textSize(15);
+        rotate(-PI/2);
+        text("Gross (in dollars)", this.chartHeight / 2, -this.chartWidth / 9);
+        pop();
+    }
+
+    drawLegend() {
+        // Legend Title
+        for (let i = 0; i < this.data.length; i++) {
+            let colorNumber = i % 6;
+            fill(255);
+            textSize(15);
+            text(this.data[i].name, this.chartWidth + 60, -(this.chartHeight - 30) + 30 * i);
+            noStroke();
+            fill(this.colors[colorNumber]);
+            rect(this.chartWidth + 40, -(this.chartHeight - 30) + 30 * i, -15, -15);
+        }
     }
 
     drawAxis() {
@@ -70,11 +107,11 @@ class ScatteredPlotChart {
 
     drawVerticalTicks() {
         // Vertical Ticks
-        for (let i = 0; i <= this.numTicks; i++) {
+        for (let i = 0; i <= this.yNumTicks; i++) {
             //ticks
             stroke(255);
             strokeWeight(1)
-            line(0, this.tickSpacing * -i, -10, this.tickSpacing * -i);
+            line(0, this.yTickSpacing * -i, -10, this.yTickSpacing * -i);
 
             //numbers (text)
             if (this.showVerticalValues) {
@@ -82,17 +119,17 @@ class ScatteredPlotChart {
                 noStroke();
                 textSize(14);
                 textAlign(RIGHT, CENTER);
-                text((i * this.verticalTickIncrements).toFixed(this.numPlaces), -15, this.tickSpacing * -i);
+                text((i * this.verticalTickIncrements).toFixed(this.numPlaces), -15, this.yTickSpacing * -i);
             }
         }
     }
 
     drawHorizontalTicks() {
-        for (let i = 0; i <= this.numTicks; i++) {
-            //ticks
+        for (let i = 0; i <= this.xNumTicks; i++) {
+            //Horizontal Ticks
             stroke(255);
             strokeWeight(1)
-            line(this.tickSpacing * i, 0, this.tickSpacing * i, 10);
+            line(this.xTickSpacing * i, 0, this.xTickSpacing * i, 10);
 
             //numbers (text)
             if (this.showHorizontalValues) {
@@ -100,7 +137,7 @@ class ScatteredPlotChart {
                 noStroke();
                 textSize(14);
                 textAlign(CENTER, TOP);
-                text((i * this.horizontalTickIncrements).toFixed(this.numPlaces), this.tickSpacing * i, 15);
+                text((i * this.horizontalTickIncrements).toFixed(this.numPlaces), this.xTickSpacing * i, 15);
             }
         }
     }
@@ -114,18 +151,18 @@ class ScatteredPlotChart {
                 noStroke();
                 textSize(14);
                 textAlign(CENTER, TOP);
-                text((i * this.tickIncrements).toFixed(this.numPlaces), this.tickSpacing * i, 15);
+                text((i * this.horizontalTickIncrements).toFixed(this.numPlaces), this.xTickSpacing * i, 15);
             }
         }
     }
 
     drawHorizontalLines() {
-        for (let i = 0; i <= this.numTicks; i++) {
+        for (let i = 0; i <= this.yNumTicks; i++) {
 
             //horizontal line
             stroke(255, 50);
             strokeWeight(1);
-            line(0, this.tickSpacing * -i, this.chartWidth, this.tickSpacing * -i);
+            line(0, this.yTickSpacing * -i, this.chartWidth, this.yTickSpacing * -i);
         }
     }
 
@@ -159,27 +196,19 @@ class ScatteredPlotChart {
     }
 
     drawVertexes() {
-        translate(this.margin, 0);
+        //translate(this.margin, 0);
 
         //dots
         beginShape();
         for (let i = 0; i < this.data.length; i++) {
             let colorNumber = i % 6;
             fill(this.colors[colorNumber]);
-            strokeWeight(1);
-            ellipse((this.barWidth + this.spacing) * i + (this.barWidth / 2), this.scaleData(-this.data[i].total), this.dotRadius);
+            noStroke();
+            ellipse(this.scaleDataX(this.data[i].budget), this.scaleDataY(-this.data[i].gross), this.dotRadius);
+            fill(220);
+            textSize(10);
+            text(this.data[i].name, this.scaleDataX(this.data[i].budget), this.scaleDataY(-this.data[i].gross) - 18);
         }
         endShape();
-
-        translate(240, -160);
-        // Legend Title
-        for (let i = 0; i < this.data.length; i++) {
-            let colorNumber = i % 6;
-            fill(255);
-            textSize(15);
-            text(this.data[i].name, 30, 30 * i);
-            fill(this.colors[colorNumber]);
-            rect(-40, 30 * i, 15, 15);
-        }
     }
 }
