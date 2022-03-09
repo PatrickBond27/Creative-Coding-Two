@@ -46,15 +46,21 @@ let chart04;
 let chart05;
 let chart06;
 
+//let myFont;
+//function loadingFont() {
+//    myFont = loadFont('RobotoCondensed-Regular.ttf');
+//}
+
 function setup() {
     createCanvas(1500, 2500);
     generateData();
+    //loadingFont();
 
-    chart01 = new BarChart(dataAvgScore);
-    chart01.chartWidth = 300;
-    chart01.chartHeight = 300;
+    chart01 = new BarChart(dataIrishMovies);
+    chart01.chartWidth = 400;
+    chart01.chartHeight = 400;
     chart01.posX = 150;
-    chart01.posY = 500;
+    chart01.posY = 600;
     chart01.updateValues();
 
     chart02 = new HorizontalBarChart(dataHighGross);
@@ -64,15 +70,15 @@ function setup() {
     chart02.posY = 900;
     chart02.updateValues();
 
-    chart03 = new StackedBarChart(data03);
-    chart03.chartWidth = 300;
-    chart03.chartHeight = 300;
+    chart03 = new StackedBarChart(dataAvgRating);
+    chart03.chartWidth = 400;
+    chart03.chartHeight = 400;
     chart03.posX = 150;
-    chart03.posY = 1100;
+    chart03.posY = 1300;
     chart03.updateValues();
 
-    chart04 = new LineChart(data04);
-    chart04.chartWidth = 300;
+    chart04 = new LineChart(dataCompanyGross);
+    chart04.chartWidth = 500;
     chart04.chartHeight = 300;
     chart04.posX = 900;
     chart04.posY = 1400;
@@ -86,9 +92,12 @@ function setup() {
     chart05.updateValues();
 }
 
-
 function draw() {
     background(50);
+    fill(230);
+    textSize(50);
+    textAlign(CENTER);
+    text("Data Visualisation on Movie & Film Industry", width / 2, 70);
     chart01.render();
     chart02.render();
     chart03.render();

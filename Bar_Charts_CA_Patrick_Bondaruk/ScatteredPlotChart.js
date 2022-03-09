@@ -25,7 +25,7 @@ class ScatteredPlotChart {
         this.showLabels = true;
         this.rotateLabels = true;
 
-        this.colors = [color('#d8f3dc'), color('#95d5b2'), color('#52b788'), color('#40916c'), color('#2d6a4f'), color('#1b4332')];
+        this.colors = [color('#b5ffe1'), color('#65b891'), color('#4e878c'), color('#40916c'), color('#2d6a4f'), color('#1b4332')];
 
         this.updateValues();
         this.calculateMaxValue();
@@ -86,7 +86,7 @@ class ScatteredPlotChart {
     drawLegend() {
         // Legend Title
         for (let i = 0; i < this.data.length; i++) {
-            let colorNumber = i % 6;
+            let colorNumber = i % 3;
             fill(255);
             textSize(15);
             text(this.data[i].name, this.chartWidth + 60, -(this.chartHeight - 30) + 30 * i);
@@ -201,7 +201,7 @@ class ScatteredPlotChart {
         //dots
         beginShape();
         for (let i = 0; i < this.data.length; i++) {
-            let colorNumber = i % 6;
+            let colorNumber = i % 3;
             fill(this.colors[colorNumber]);
             noStroke();
             ellipse(this.scaleDataX(this.data[i].budget), this.scaleDataY(-this.data[i].gross), this.dotRadius);

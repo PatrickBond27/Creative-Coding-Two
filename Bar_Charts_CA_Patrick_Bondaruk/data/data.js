@@ -10,11 +10,23 @@ let avgScoreTable;
 let dataBudgetGross = [];
 let budgetGrossTable;
 
+let dataAvgRating = [];
+let avgRatingTable;
+
+let dataIrishMovies = [];
+let irishMoviesTable;
+
+let dataCompanyGross = [];
+let companyGrossTable;
+
 function preload() {
     table = loadTable('data/dataMovies.csv', 'csv', 'header');
     highGrossTable = loadTable('data/highGrossData.csv', 'csv', 'header');
     avgScoreTable = loadTable('data/avgScoreData.csv', 'csv', 'header');
     budgetGrossTable = loadTable('data/budgetGrossData.csv', 'csv', 'header');
+    avgRatingTable = loadTable('data/avgRatingData.csv', 'csv', 'header');
+    irishMoviesTable = loadTable('data/irishMoviesData.csv', 'csv', 'header');
+    companyGrossTable = loadTable('data/companyGrossData.csv', 'csv', 'header');
 }
 
 function generateData() {
@@ -60,5 +72,37 @@ function generateData() {
 
     for (let i = 0; i < dataBudgetGross.length; i++) {
         dataBudgetGross[i].gross = int(dataBudgetGross[i].gross);
+    }
+
+    for (let r = 0; r < avgRatingTable.getRowCount(); r++) {
+        dataAvgRating.push(avgRatingTable.rows[r].obj);
+    }
+
+    for (let i = 0; i < dataAvgRating.length; i++) {
+        dataAvgRating[i].high = int(dataAvgRating[i].high);
+    }
+
+    for (let i = 0; i < dataAvgRating.length; i++) {
+        dataAvgRating[i].medium = int(dataAvgRating[i].medium);
+    }
+
+    for (let i = 0; i < dataAvgRating.length; i++) {
+        dataAvgRating[i].low = int(dataAvgRating[i].low);
+    }
+
+    for (let r = 0; r < irishMoviesTable.getRowCount(); r++) {
+        dataIrishMovies.push(irishMoviesTable.rows[r].obj);
+    }
+
+    for (let i = 0; i < dataIrishMovies.length; i++) {
+        dataIrishMovies[i].amount = int(dataIrishMovies[i].amount);
+    }
+
+    for (let r = 0; r < companyGrossTable.getRowCount(); r++) {
+        dataCompanyGross.push(companyGrossTable.rows[r].obj);
+    }
+
+    for (let i = 0; i < dataCompanyGross.length; i++) {
+        dataCompanyGross[i].billion = float(dataCompanyGross[i].billion);
     }
 }

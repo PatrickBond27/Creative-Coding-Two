@@ -21,7 +21,7 @@ class LineChart {
         this.showVerticalValues = true;
         this.showHorizontalValues = false;
         this.showLabels = true;
-        this.rotateLabels = true;
+        this.rotateLabels = false;
 
         this.colors = [color('#ffe066'), color('#fab666'), color('#f68f6a'), color('#f3646a')];
 
@@ -36,7 +36,7 @@ class LineChart {
     }
 
     calculateMaxValue() {
-        let listValues = this.data.map(function(x) { return x.total })
+        let listValues = this.data.map(function(x) { return x.billion })
         this.maxValue = max(listValues);
         this.verticalTickIncrements = this.maxValue / this.numTicks;
         this.horizontalTickIncrements = this.maxValue / this.data.length;
@@ -66,12 +66,12 @@ class LineChart {
         fill(255);
         textAlign(CENTER);
         textSize(20);
-        text("Chart title", this.chartWidth / 2, -this.chartHeight - 40);
+        text("The Gross of Paramount Pictures every 5 years (in dollars)", this.chartWidth / 2, -this.chartHeight - 40);
         textSize(15);
-        text("Chart title Horizontal", this.chartWidth / 2, this.chartHeight / 3);
+        text("Year", this.chartWidth / 2, this.chartHeight / 5);
         textSize(15);
         rotate(-PI/2);
-        text("Chart title Vertical", this.chartHeight / 2, -this.chartWidth / 5);
+        text("Gross (billions)", this.chartHeight / 2, -this.chartWidth / 8);
         pop();
     }
 
@@ -141,14 +141,14 @@ class LineChart {
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
                     rotate(PI / 2)
-                    text(this.data[i].name, 0, 0);
+                    text(this.data[i].year, 0, 0);
                     pop();
                 } else {
                     noStroke();
                     fill(255);
                     textSize(14);
                     textAlign(CENTER, BOTTOM);
-                    text(this.data[i].name, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
+                    text(this.data[i].year, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 30);
                 }
             }
         }
@@ -171,7 +171,7 @@ class LineChart {
         strokeWeight(1);
         beginShape();
         for (let i = 0; i < this.data.length; i++) {
-            ellipse((this.barWidth + this.spacing) * i + (this.barWidth / 2), this.scaleData(-this.data[i].total), this.dotRadius);
+            ellipse((this.barWidth + this.spacing) * i + (this.barWidth / 2), this.scaleData(-this.data[i].billion), this.dotRadius);
         }
         endShape();
 
@@ -181,7 +181,7 @@ class LineChart {
         strokeWeight(3);
         beginShape();
         for (let i = 0; i < this.data.length; i++) {
-            vertex((this.barWidth + this.spacing) * i + (this.barWidth / 2), this.scaleData(-this.data[i].total));
+            vertex((this.barWidth + this.spacing) * i + (this.barWidth / 2), this.scaleData(-this.data[i].billion));
         }
         endShape();
     }
@@ -202,8 +202,8 @@ class LineChart {
         stroke(200, 0, 0);
         strokeWeight(1);
         beginShape();
-        for (let j = 0; j < this.data[i].values.length; j++) {
-            ellipse((this.barWidth + this.spacing) * j + (this.barWidth / 2), -this.data[i].values[j], this.dotRadius);
+        for (let j = 0; j < this.data[i].length; j++) {
+            ellipse((this.barWidth + this.spacing) * j + (this.barWidth / 2), -this.data[i].billion, this.dotRadius);
         }
         endShape();
 
@@ -212,8 +212,8 @@ class LineChart {
         stroke(200, 0, 0);
         strokeWeight(3);
         beginShape();
-        for (let j = 0; j < this.data[i].values.length; j++) {
-            vertex((this.barWidth + this.spacing) * j + (this.barWidth / 2), this.scaleData(-this.data[i].values[j]));
+        for (let j = 0; j < this.data[i].length; j++) {
+            vertex((this.barWidth + this.spacing) * j + (this.barWidth / 2), this.scaleData(-this.data[i].billion));
         }
         endShape();
     }
